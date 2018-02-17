@@ -1,5 +1,6 @@
 # yii2-dockerpocket
-A set of preconfigure docker servers where to work with your Yii2 advanced application framework.
+A set of preconfigure docker servers to work with your Yii2 advanced application framework.
+
 It includes:
 - A webserver (PHP7.1, Apache2.4, composer, xdebug)
 - A Database server (Mysql 5.5)

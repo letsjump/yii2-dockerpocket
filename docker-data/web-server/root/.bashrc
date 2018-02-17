@@ -7,7 +7,7 @@ cat <<'MSG'
 ╚══════╝╚══════╝   ╚═╝   ╚══════╝ ╚════╝  ╚═════╝ ╚═╝     ╚═╝╚═╝
 
 
-Docker image letsjump/base
+Docker image letsjump/yii2-dockerpocket
 
 Available commands:
 
