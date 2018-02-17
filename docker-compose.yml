@@ -1,12 +1,9 @@
 Web_Server:
-  # image: apache2-php56
   image: letsjump/pineta-v2
-  restart: always
-  container_name: PDC2_Web_Server
+  # restart: always
+  container_name: DKP_Web_Server
   volumes:
     - /var/run/docker.sock:/tmp/docker.sock:ro
-    #- ./docker-data/apache2/logs:/var/log/apache2
-    #- ./docker-data/apache2/sites-available:/etc/apache2/sites-available
     - ./application:/var/www
     - /etc/localtime:/etc/localtime
     - ./docker-data/shared-folder:/root/backup
@@ -18,20 +15,27 @@ Web_Server:
     - 80:80
 
 Database_Server:
-  container_name: PDC_Database_Server
+  container_name: DKP_Database_Server
   image: mysql:5.5
-  restart: always
+  # restart: always
   volumes:
     - /etc/localtime:/etc/localtime
-    #- ./docker-data/mysql:/docker-entrypoint-initdb.d
     - ./docker-data/db-server/etc/mysql:/etc/mysql
     - ./docker-data/db-server/var/lib/mysql:/var/lib/mysql
     - ./docker-data/shared-folder:/root/backup
   environment:
     - MYSQL_ROOT_PASSWORD=root 
-    - MYSQL_DATABASE=pdc_manutenzioni
-    - MYSQL_USER=pdc_manutenzioni
-    - MYSQL_PASSWORD=carso@Pineta
+    - MYSQL_DATABASE=<database name here>
+    - MYSQL_USER=<user here>
+    - MYSQL_PASSWORD=<password here>
     - TZ=UTC
   ports:
     - 3306:3306
+    
+Redis_Server:
+    container_name: DKP_Redis_Server
+    image: redis:alpine
+    ports:
+    - "6379"
+    volumes:
+    - /etc/localtime:/etc/localtime

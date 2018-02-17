@@ -105,6 +105,9 @@ ENV PHP_USER_ID=33 \
 # Add configuration files
 COPY ./docker-data/web-server /
 
+ADD ./docker-data/web-server/etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available
+RUN ln -s /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-enabled/000-default.conf
+
 # Add GITHUB_API_TOKEN support for composer
 RUN chmod 700 \
         /usr/local/bin/docker-entrypoint.sh \
