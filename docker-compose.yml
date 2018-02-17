@@ -11,7 +11,7 @@ Web_Server:
     - /etc/localtime:/etc/localtime
     - ./docker-data/shared-folder:/root/backup
   environment:
-    - GITHUB_API_TOCKEN=e84833616814733847c2b05777aee2d1d4ace5bb
+    - GITHUB_API_TOCKEN=<put your key key here>
   links:
     - Database_Server:dbserver
   ports:
