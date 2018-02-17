@@ -5,6 +5,7 @@ Web_Server:
   volumes:
     - /var/run/docker.sock:/tmp/docker.sock:ro
     - ./application:/var/www
+    - ./docker-data/web-server/etc/apache2/sites-available:/etc/apache2/sites-available
     - /etc/localtime:/etc/localtime
     - ./docker-data/shared-folder:/root/backup
   environment:

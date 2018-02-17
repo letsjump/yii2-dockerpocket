@@ -1,1 +1,4 @@
- 
+application/*
+docker-data/shared-folder/*
+db-server/var/lib/mysql/*
+.directory
