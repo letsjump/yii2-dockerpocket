@@ -1,0 +1,37 @@
+Web_Server:
+  # image: apache2-php56
+  image: letsjump/pineta-v2
+  restart: always
+  container_name: PDC2_Web_Server
+  volumes:
+    - /var/run/docker.sock:/tmp/docker.sock:ro
+    #- ./docker-data/apache2/logs:/var/log/apache2
+    #- ./docker-data/apache2/sites-available:/etc/apache2/sites-available
+    - ./application:/var/www
+    - /etc/localtime:/etc/localtime
+    - ./docker-data/shared-folder:/root/backup
+  environment:
+    - GITHUB_API_TOCKEN=e84833616814733847c2b05777aee2d1d4ace5bb
+  links:
+    - Database_Server:dbserver
+  ports:
+    - 80:80
+
+Database_Server:
+  container_name: PDC_Database_Server
+  image: mysql:5.5
+  restart: always
+  volumes:
+    - /etc/localtime:/etc/localtime
+    #- ./docker-data/mysql:/docker-entrypoint-initdb.d
+    - ./docker-data/db-server/etc/mysql:/etc/mysql
+    - ./docker-data/db-server/var/lib/mysql:/var/lib/mysql
+    - ./docker-data/shared-folder:/root/backup
+  environment:
+    - MYSQL_ROOT_PASSWORD=root 
+    - MYSQL_DATABASE=pdc_manutenzioni
+    - MYSQL_USER=pdc_manutenzioni
+    - MYSQL_PASSWORD=carso@Pineta
+    - TZ=UTC
+  ports:
+    - 3306:3306
