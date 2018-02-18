@@ -25,14 +25,14 @@ Database_Server:
     - ./docker-data/db-server/var/lib/mysql:/var/lib/mysql
     - ./docker-data/shared-folder:/root/backup
   environment:
-    - MYSQL_ROOT_PASSWORD=root 
+    - MYSQL_ROOT_PASSWORD=root
     - MYSQL_DATABASE=<database name here>
     - MYSQL_USER=<user here>
     - MYSQL_PASSWORD=<password here>
     - TZ=UTC
   ports:
     - 3306:3306
-    
+
 Redis_Server:
     container_name: DKP_Redis_Server
     image: redis:alpine
@@ -40,3 +40,4 @@ Redis_Server:
     - "6379"
     volumes:
     - /etc/localtime:/etc/localtime
+    - ./docker-data/shared-folder:/root/backup
